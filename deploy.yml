@@ -130,6 +130,8 @@
            src: "templates/www.conf.j2"
            dest: "/etc/php/7.0/fpm/pool.d/www.conf"
       - name: "配置php.ini"
+        become: yes
+        become_method: sudo
         template:
            src: "templates/php.ini.j2"
            dest: "/etc/php/7.0/fpm/php.ini"
