@@ -1,0 +1,7 @@
+[all:children]
+clatterans
+[all:vars]
+ansible_user=root
+ansible_ssh_pass=crazy888
+[clatterans]
+clatteranspc 192.168.10.205
