@@ -192,6 +192,8 @@
            chdir=/tmp
            creates=/usr/local/bin/composer
       - name: move composer into globally-accessible location.
+        become: yes
+        become_method: sudo
         shell: >
            mv /tmp/composer.phar /usr/local/bin/composer
            creates=/usr/local/bin/composer
