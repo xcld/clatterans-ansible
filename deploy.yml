@@ -1,5 +1,6 @@
 ---
 - hosts: clatterans
+- sudo: yes
   pre_tasks:
       - name: update apt cache if needed.
         apt: update_cache=yes cache_valid_time=3600
@@ -160,6 +161,7 @@
            dest: /tmp/composer-installer.php
            mode: 0755
       - name: run composer installer
+        sudo: no
         command: >
            php composer-installer.php
            chdir=/tmp

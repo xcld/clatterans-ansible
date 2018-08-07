@@ -2,6 +2,7 @@
 server_hostname: sit.clatterans.com
 user: crazysal
 group: crazysal
+sudo_user: crazysal
 core_path: "/home/crazysal/clatterans/src/public"
 domain: clatterans
 pwd: p s w
