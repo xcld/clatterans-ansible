@@ -1,0 +1,8 @@
+---
+server_hostname: sit.clatterans.com
+user: crazysal
+group: crazysal
+ibms_core_path: "/home/crazysal/ibms-v2/public"
+domain: ibms-v2
+pwd: p s w
+sshkey: p w d
