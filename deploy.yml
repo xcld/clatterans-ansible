@@ -34,35 +34,54 @@
              -  curl
              -  nginx
              -  php7.0
-             -  php7.2-cli
-             -  php7.2-common
-             -  php7.2-curl
-             -  php7.2-fpm
-             -  php7.2-gd
-             -  php7.2-intl
-             -  php7.2-json
-             -  php7.2-ldap
-             -  php7.2-mbstring
-             -  php7.2-mysql
-             -  php7.2-opcache
-             -  php7.2-readline
-             -  php7.2-snmp
-             -  php7.2-soap
-             -  php7.2-xml
-             -  php7.2-zip
-             -  php-redis
+             -  php7.0-cli
+             -  php7.0-common
+             -  php7.0-curl
+             -  php7.0-fpm
+             -  php7.0-gd
+             -  php7.0-imap
+             -  php7.0-intl
+             -  php7.0-json
+             -  php7.0-mbstring
+             -  php7.0-mcrypt
+             -  php7.0-mysql
+             -  php7.0-opcache
+             -  php7.0-pspell
+             -  php7.0-readline
+             -  php7.0-recode
+             -  php7.0-snmp
+             -  php7.0-sqlite3
+             -  php7.0-tidy
+             -  php7.0-xml
+             -  php7.0-xmlrpc
+             -  php7.0-xsl
+             -  php7.0-zip
+             -  memcached
+             -  php-memcache
+             -  php-memcached
+             -  php-cli-prompt
+             -  php-common
+             -  php-composer-semver
+             -  php-composer-spdx-licenses
+             -  php-igbinary
+             -  php-imagick
+             -  php-json-schema
+             -  php-msgpack
+             -  php-mysql
              -  php-pear
+             -  php-symfony-console
+             -  php-symfony-filesystem
+             -  php-symfony-finder
+             -  php-symfony-process
              -  python-mysqldb
              -  mysql-server
              -  openssl
              -  libcurl4-openssl-dev
-             -  redis-server
-             -  openvpn
       - name: "stop ufw"
         service: name=ufw state=stopped
       - name: create htmlroot dir
         file:
-           path: "{{ ibms_core_path }}"
+           path: "{{ core_path }}"
            state: directory
            mode: 0755
       - name: start nginx,mysql,php
@@ -70,8 +89,8 @@
         with_items:
              - nginx
              - mysql
-             - php7.2-fpm
-             - redis-server
+             - php7.0-fpm
+             - memcached
       - name : "nginx 修改主配置文件"
         template:
            src: "templates/nginx.conf.j2"
@@ -79,7 +98,7 @@
            owner: root
            group: root
            mode: 0744
-      - name : "在nginx 中为ibms2 添加 virtualhost"
+      - name : "在nginx 中为{{ domain }}添加 virtualhost"
         template:
            src: "templates/ibmsv2.conf.j2.j2"
            dest: "/etc/nginx/sites-available/{{ domain }}.conf"
@@ -96,7 +115,7 @@
         template:
            src: "templates/php.ini.j2"
            dest: "/etc/php/7.2/fpm/php.ini"
-        notify: restart php7.2-fpm
+        notify: restart php7.0-fpm
       - name: "配置 redis"
         template:
            src: "templates/redis.conf.j2"
@@ -152,8 +171,8 @@
   handlers:
       - name: restart nginx
         service: name=nginx state=restarted
-      - name: restart php7.2-fpm
-        service: name=php7.2-fpm state=restarted
+      - name: restart php7.0-fpm
+        service: name=php7.0-fpm state=restarted
       - name: restart redis-server
         service: name=redis-server state=restarted
       - name: restart apparmor
