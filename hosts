@@ -5,4 +5,4 @@ ansible_user=crazysal
 ansible_ssh_pass=crazy888
 ansible_sudo_pass=crazy888
 [clatterans]
-clatteranspc 192.168.10.205
+clatteranspc  ansible_host=192.168.10.205
