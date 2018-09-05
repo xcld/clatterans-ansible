@@ -2,7 +2,7 @@
 clatterans
 [all:vars]
 ansible_user=crazysal
-ansible_ssh_pass=crazy888
-ansible_sudo_pass=crazy888
+ansible_ssh_pass=pwd
+ansible_sudo_pass=pwd
 [clatterans]
-clatteranspc  ansible_host=192.168.10.205
+clatteranspc  ansible_host=x.x.x.x
